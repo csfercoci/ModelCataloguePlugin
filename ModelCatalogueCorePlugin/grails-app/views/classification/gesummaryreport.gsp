@@ -31,7 +31,7 @@
             <div class="col-md-12">
                 <div class="panel-heading"><h3>DATA ELEMENT LISTING</h3></div>
                 <h3> Table of Contents</h3>
-                <g:each status="i"  in="${classification.classifies.findAll{it in Model}}" var="model1">
+                <g:each status="i" in="${classification.classifies.findAll{it in Model}}" var="model1">
                     <ul>
                        <li>
                             <!--g:if test="!${model1.childOf}"-->
