@@ -40,7 +40,7 @@
                 <h1>${classification.name}</h1>
                     <h2>Models</h2>
                     <g:each in="${classification.classifies.findAll{ it in Model}.sort { it.name }}">
-                        <h3>${GrailsNameUtils.getNaturalName(it.getClass().simpleName)} ${it.name}</h3>
+
                         <table class="table">
                             <thead>
                                 <tr>
@@ -51,12 +51,24 @@
                                     <td class="col-md-4">Last Updated</td>
                                     <td class="col-md-8"><g:formatDate date="${it.lastUpdated}" style="medium"/></td>
                                 </tr>
+                            <tr>
+                                <td class="col-md-4">ModelName:</td>
+                                <td class="col-md-8"> ${it.name} </td>
+                            </tr>
+                            <tr>
+                                <td class="col-md-4">ModelDescription:</td>
+                                <td class="col-md-8"> ${it.description} </td>
+                            </tr>
                                 <!-- proper changelog -->
                             </thead>
                         </table>
 
                         <g:if test="${it.contains}">
                             <h4>Contained Data Elements</h4>
+                            <tr>
+                                <td class="col-md-4">Model Name</td>
+                                <td class="col-md-8">${it.name}</td>
+                            </tr>
                             <table class="table">
                                 <thead>
                                 <tr>

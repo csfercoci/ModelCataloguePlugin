@@ -266,6 +266,13 @@ Model catalogue core plugin (metadata registry)
 
         reportsRegistry.register {
             creates link
+            title { "GE Summary Report" }
+            type Classification
+            link controller: 'classification', action: 'gesummaryreport', id: true
+        }
+
+        reportsRegistry.register {
+            creates link
             type Classification, Model, DataElement, ValueDomain, DataType, MeasurementUnit
             title { "Export to Catalogue XML" }
             link { CatalogueElement element ->
