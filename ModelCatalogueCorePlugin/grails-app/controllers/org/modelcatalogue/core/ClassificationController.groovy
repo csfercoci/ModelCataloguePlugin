@@ -33,6 +33,15 @@ class ClassificationController<T> extends AbstractCatalogueElementController<Cla
         render view: 'gesummaryreport', model: [classification: classification]
     }
 
+    def gesummaryreport2() {
+        Classification classification = queryForResource(params.id)
+        if (!classification) {
+            notFound()
+            return
+        }
+        render view: 'gesummaryreport2', model: [classification: classification]
+    }
+
     @Override
     protected boolean hasUniqueName() {
         true
