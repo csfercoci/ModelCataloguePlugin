@@ -1,26 +1,25 @@
 <%@ page import="org.modelcatalogue.core.EnumeratedType" %>
 <g:if test="${models}">
-    <ul style="list-style-type:none" class="list-group">
         <g:each status="j" in="${models}" var="model">
-            <li class="list-item">
-                <h4>${(index)}.${(j+1)}  ${model.name} <span class="badge">${model.id}</span><small><span class="badge pull-right">v${model.versionNumber}</span><span class="label label-info pull-right">${model.status}</span></small></h3></h4>
+                <h4>${model.name}</h4>
                 <p>${model.description}</p>
-
-
 
                 <g:if test="${model.contains}">
                     <mc:relationships element="${model}" var="relationship" direction="outgoing" type="containment">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title text-center"><span class="badge pull-left"><div id="${relationship?.destination?.id}">${relationship?.destination?.id}</div></span>${relationship?.destination?.name} <small><span class="badge pull-right">v${model.versionNumber}</span><span class="label label-info pull-right">${model.status}</span></small></h3>
+                        <div>
+                            <div>
+                                <h3><div id="${relationship?.destination?.id}">  ${relationship?.destination?.name} (GE${relationship?.destination?.id}) </div> </h3>
                             </div>
-                            <div class="panel-body">
+                            <div>
                                 <p>${relationship.destination.description}</p>
+
+                                <p><strong>Value Domain</strong></p>
+
                                 <g:if test="${relationship?.destination?.valueDomain}">
-                                    <div class="panel panel-default">
-                                        <g:each in="${relationship.destination?.valueDomain?.classifications}" var="cls">
-                                            <span class="pull-right badge">${cls.name}</span>
-                                        </g:each>
+                                    <div>
+                                        %{--<g:each in="${relationship.destination?.valueDomain?.classifications}" var="cls">--}%
+                                    <g:if test="${relationship?.destination?.valueDomain?.classifications[0]}"> <span class="pull-right">${relationship?.destination?.valueDomain?.classifications[0].name}</span></g:if>
+                                        %{--</g:each>--}%
                                         <p><strong>${relationship?.destination?.valueDomain?.name}</strong>
                                             <g:if test="${relationship?.destination?.valueDomain?.description!=relationship?.destination?.description}">
                                                 - ${relationship?.destination?.valueDomain?.description}
@@ -57,8 +56,17 @@
                                     %{--<p>${en}</p>--}%
                                     %{--</g:each>--}%
                                     %{--</g:if>--}%
+
+
+
                                     </div>
                                 </g:if>
+
+                                <g:each in="${relationship.destination.isSynonymFor}" var="synonym">
+                                    <p> This element is the same as <strong> ${synonym.name} (${synonym.ext.get("Data Item No")})</strong> in the ${synonym.containedIn[0].name} section of the ${synonym.classifications[0].name} data set
+                                    </p>
+                                </g:each>
+
                             </div>
                         </div>
                     </mc:relationships>
@@ -67,7 +75,6 @@
 
 
                 <g:if test="${model?.parentOf}"> <g:render template="delisting" model="${[models: model.parentOf, index: (index + "." + (j+1))]}"/></g:if>
-            </li>
+
         </g:each>
-    </ul>
 </g:if>

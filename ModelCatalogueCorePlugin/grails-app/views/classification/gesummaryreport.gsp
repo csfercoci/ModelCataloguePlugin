@@ -29,32 +29,15 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="panel-heading"><h3>DATA ELEMENT LISTING</h3></div>
-                <h3> Table of Contents</h3>
-                <g:each status="i" in="${classification.classifies.findAll{it in Model}}" var="model1">
-                    <ul>
-                       <li>
-                            <!--g:if test="!${model1.childOf}"-->
-                           <g:if test="!${model1.childOf}">
-                                <h3><a href="#${model1.id}">${i+1}. ${model1.name}</a><small><span class="badge">${model1.id}</span><span class="badge pull-right">v${model1.versionNumber}</span></small></h3>
-                            </g:if>
-                       </li>
-                    </ul>
-                </g:each>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
 
             </br>
             </br>
             </br>
              <g:each status="i" in="${classification.classifies.findAll{it in Model}}" var="model">
                     <g:if test="!${model.childOf}">
-                        <div id="${model.id}"><h3>${i+1}. ${model.name}  </div><small><span class="badge">${model.id}</span><span class="badge pull-right">v${model.versionNumber}</span> <span class="label label-info pull-right">${model.status}</span></small></div></h3>
-                        <p>${model.description}</p>
+                        <div id="${model.id}">
+                            <h${i+1}>${model.name}  </div></div></h${i+1}>
+                            <p>${model.description}</p>
                         <g:render template="linkedModel" model="${[models: model, index:i+1]}" />
                     </g:if>
                 </g:each>
@@ -64,7 +47,7 @@
 <div class="container">
     <div class="row">
     <div class="col-md-12">
-        <div class="panel-heading"><h3>DATA ELEMENT LISTING</h3></div>
+        <div class="panel-heading"><h1>DATA ELEMENT DETAIL</h1></div>
     </br>
     </br>
     </br>
