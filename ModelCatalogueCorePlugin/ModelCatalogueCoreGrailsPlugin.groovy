@@ -268,7 +268,7 @@ Model catalogue core plugin (metadata registry)
             creates link
             title { "GE Summary Report" }
             type Classification
-            link controller: 'classification', action: 'gesummaryreport', id: true
+            link controller: 'classification', action: 'gesummaryreport2', id: true
         }
 
         reportsRegistry.register {
