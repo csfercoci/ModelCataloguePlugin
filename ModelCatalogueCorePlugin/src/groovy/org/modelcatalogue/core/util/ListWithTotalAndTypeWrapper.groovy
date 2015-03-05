@@ -1,4 +1,7 @@
 package org.modelcatalogue.core.util
+
+import org.springframework.http.HttpMethod
+
 /**
  * Created by ladin on 14.07.14.
  */
@@ -15,6 +18,8 @@ class ListWithTotalAndTypeWrapper<T> implements ListWrapper<T> {
 
     String next
     String previous
+
+    HttpMethod method = HttpMethod.GET
 
     @Delegate ListWithTotalAndType<T> list = null
 

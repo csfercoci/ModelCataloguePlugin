@@ -13,7 +13,7 @@ abstract class ListWrapperMarshaller extends AbstractMarshallers {
 
     @Override
     protected Map<String, Object> prepareJsonMap(Object elements) {
-        [
+        def ret = [
                 base: elements.base,
                 itemType: elements.itemType?.name,
                 success: true,
@@ -26,7 +26,11 @@ abstract class ListWrapperMarshaller extends AbstractMarshallers {
                 next: elements.next,
                 availableReports: getAvailableReports(elements),
                 sort: elements.sort,
-                order: elements.order
+                order: elements.order,
         ]
+        if (ret.hasProperty('method')) {
+            ret.method = elements.method?.toString()
+        }
+        ret
     }
 }

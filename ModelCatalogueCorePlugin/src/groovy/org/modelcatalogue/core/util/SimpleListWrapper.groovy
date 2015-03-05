@@ -1,6 +1,6 @@
 package org.modelcatalogue.core.util
 
-import grails.util.GrailsNameUtils
+import org.springframework.http.HttpMethod
 
 /**
  * Wrapper used for easier marshalling of relations result lists
@@ -17,5 +17,6 @@ class SimpleListWrapper<T> implements ListWrapper<T>{
     int page
     int offset
     List<T> items
+    HttpMethod method = HttpMethod.GET
 
 }

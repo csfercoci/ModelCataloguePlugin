@@ -12,7 +12,10 @@ class CatalogueElementQueryBuilder<T extends CatalogueElement> {
     final DetachedCriteria<T> criteria
 
     private CatalogueElementQueryBuilder(Class<T> resource) {
-        this.criteria = new DetachedCriteria(resource)
+        this.criteria = new DetachedCriteria(resource).build {
+            distinct 'id'
+            sort 'name'
+        }
     }
 
     static <T extends CatalogueElement> CatalogueElementQueryBuilder<T> create(Class<T> resource, @DelegatesTo(CatalogueElementQueryBuilder) Closure query = {}) {
